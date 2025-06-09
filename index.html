@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>商品選択</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="display">
+      <span>商品を選んでください</span>
+    </div>
+    <div class="buttons">
+      <div class="product-button">
+        <div class="product-label">
+          <span class="en">Ice Coffee</span><br>
+          <span class="jp">アイスコーヒー</span>
+        </div>
+        <div class="push">PUSH</div>
+      </div>
+      <div class="product-button">
+        <div class="product-label">
+          <span class="en">Hot Coffee</span><br>
+          <span class="jp">ホットコーヒー</span>
+        </div>
+        <div class="push">PUSH</div>
+      </div>
+      <div class="product-button">
+        <div class="product-label">
+          <span class="en">Caffè Latte</span><br>
+          <span class="jp">カフェラテ</span>
+        </div>
+        <div class="push">PUSH</div>
+      </div>
+    </div>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const display = document.querySelector('.display span');
+      const pushButtons = document.querySelectorAll('.push');
+      const productButtons = document.querySelectorAll('.product-button');
+      pushButtons.forEach((btn, idx) => {
+        btn.addEventListener('click', function() {
+          // 表示を変更
+          const en = productButtons[idx].querySelector('.en').textContent;
+          display.textContent = en;
+          // すべて太字
+          productButtons.forEach(pb => {
+            pb.querySelector('.en').style.fontWeight = 'bold';
+            pb.querySelector('.jp').style.fontWeight = 'bold';
+          });
+          // 選択中だけRegular
+          productButtons[idx].querySelector('.en').style.fontWeight = 'normal';
+          productButtons[idx].querySelector('.jp').style.fontWeight = 'normal';
+        });
+      });
+    });
+  </script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const buttons = document.querySelectorAll('.product-button .push');
+      const display = document.querySelector('.display span');
+      const productButtons = document.querySelectorAll('.product-button');
+
+      buttons.forEach((btn, idx) => {
+        btn.addEventListener('click', function() {
+          // 光るエフェクト
+          btn.classList.add('active');
+          setTimeout(() => btn.classList.remove('active'), 2000);
+
+          // 真ん中のボタン（idx === 1）なら初期状態に戻す
+          if (idx === 1) {
+            display.textContent = '商品を選んでください';
+            const iceLabel = productButtons[0].querySelector('.product-label');
+            iceLabel.innerHTML = '<span class="en">Ice Coffee</span><br><span class="jp">アイスコーヒー</span>';
+            productButtons[0].style.background = '#fff';
+            iceLabel.style.background = '#fcfdf6';
+            const hotLabel = productButtons[1].querySelector('.product-label');
+            hotLabel.innerHTML = '<span class="en">Hot Coffee</span><br><span class="jp">ホットコーヒー</span>';
+            productButtons[1].style.background = '#fff';
+            hotLabel.style.background = '#fcfdf6';
+            const latteLabel = productButtons[2].querySelector('.product-label');
+            latteLabel.innerHTML = '<span class="en">Caffè Latte</span><br><span class="jp">カフェラテ</span>';
+            productButtons[2].style.background = '#fff';
+            latteLabel.style.background = '#fcfdf6';
+            return;
+          }
+
+          if (idx === 2) { // 右のボタン（Caffè Latte）
+            // 上部テキスト変更
+            display.textContent = '濃さを選んでください';
+
+            // Ice Coffee: Regular→薄め
+            const iceLabel = productButtons[0].querySelector('.product-label');
+            iceLabel.innerHTML = '<span class="taste-label">薄め</span>';
+            productButtons[0].style.background = '#fff';
+            iceLabel.style.background = '#fcfdf6';
+
+            // Hot Coffee: グレー解除＋普通表示
+            const hotLabel = productButtons[1].querySelector('.product-label');
+            hotLabel.innerHTML = '<span class="taste-label">普通</span>';
+            productButtons[1].style.background = '#faf9f8';
+            hotLabel.style.background = '#fcfdf6';
+
+            // Caffè Latte: Large→濃い目
+            const latteLabel = productButtons[2].querySelector('.product-label');
+            latteLabel.innerHTML = '<span class="taste-label">濃い目</span>';
+            productButtons[2].style.background = '#fff';
+            latteLabel.style.background = '#fcfdf6';
+          } else {
+            // 既存の動作（サイズ選択）
+            display.textContent = 'サイズを選んでください';
+
+            // Ice Coffee: 文字を消してRegular表示
+            const iceLabel = productButtons[0].querySelector('.product-label');
+            iceLabel.innerHTML = '<span class="size-label">Regular</span>';
+            productButtons[0].style.background = '#fff';
+            iceLabel.style.background = '#fcfdf6';
+
+            // Hot Coffee: 文字を消して背景グレー
+            const hotLabel = productButtons[1].querySelector('.product-label');
+            hotLabel.innerHTML = '';
+            productButtons[1].style.background = '#bbb';
+            hotLabel.style.background = '#bbb';
+
+            // Caffè Latte: 文字を消してLarge表示
+            const latteLabel = productButtons[2].querySelector('.product-label');
+            latteLabel.innerHTML = '<span class="size-label">Large</span>';
+            productButtons[2].style.background = '#fff';
+            latteLabel.style.background = '#fcfdf6';
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,115 @@
+body {
+  background: #faf9f8;
+  font-family: 'Noto Sans JP', 'Helvetica Neue', Arial, 'メイリオ', meiryo, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  padding-top: 60px;
+}
+
+.display {
+  width: 600px;
+  height: 140px;
+  background: #fcfdf6;
+  border: 8px solid #bbb;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: #888;
+  margin-bottom: 60px;
+  box-sizing: border-box;
+}
+
+.buttons {
+  display: flex;
+  gap: 48px;
+}
+
+.product-button {
+  width: 150px;
+  height: 300px; /* 2:1 の比率 */
+  background: #fff;
+  border: 8px solid #bbb;
+  border-radius: 999px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.product-label {
+  width: 100%;
+  height: 50%;
+  background: #fcfdf6;
+  border-bottom: 4px solid #bbb;
+  border-top-left-radius: 90px 80px;
+  border-top-right-radius: 90px 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  color: #888;
+  padding-top: 24px;
+  box-sizing: border-box;
+  pointer-events: none;
+}
+
+.product-label .en {
+  font-size: 1.1rem;
+}
+.product-label .jp {
+  font-size: 1rem;
+  color: #888;
+}
+
+.push {
+  width: 100%;
+  height: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  color: #bbb;
+  letter-spacing: 0.2em;
+  background: #fff;
+  border-bottom-left-radius: 90px 80px;
+  border-bottom-right-radius: 90px 80px;
+  cursor: pointer;
+  user-select: none;
+  pointer-events: auto;
+  transition: box-shadow 0.8s, background 0.4s, color 0.4s;
+}
+
+.push.active {
+  box-shadow: 0 0 32px 16px rgb(197, 233, 222);
+}
+
+@media (max-width: 700px) {
+  .display {
+    width: 95vw;
+    font-size: 1.2rem;
+  }
+  /* .buttonsのflex-direction: column;を削除して常に横並びにする */
+  .buttons {
+    /* gap: 32px; のみ残す */
+    gap: 32px;
+  }
+  .product-button {
+    width: 50vw;
+    height: 100vw; /* 2:1 の比率 */
+    border-radius: 999px;
+  }
+}
